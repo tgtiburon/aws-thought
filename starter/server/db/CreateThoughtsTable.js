@@ -2,6 +2,7 @@ const AWS = require('aws-sdk');
 // Modify the aws config 
 AWS.config.update({
     region: 'us-east-2',
+    //endpoint: "http://localhost:8000"
 });
 
 // Create the dynamodb

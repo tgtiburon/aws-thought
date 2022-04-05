@@ -1,10 +1,11 @@
 // interface with DynamoDB
-const AWS = require("aws-sdk");
+const AWS = require('aws-sdk');
 // File system for users.json
-const fs = require("fs");
+const fs = require('fs');
 
 AWS.config.update({
-  region: "us-east-2",
+  region: 'us-east-2',
+  //endpoint: "http://localhost:8000"
 });
 
 // DocumentClient allows us to use JS objects as arguments
@@ -13,7 +14,7 @@ AWS.config.update({
 // and speeds up the dev process
 
 const dynamodb = new AWS.DynamoDB.DocumentClient({
-  apiVersion: "2012-08-10",
+  apiVersion: '2012-08-10',
 });
 
 // Read users.json and assign to the allUsers object
@@ -26,10 +27,10 @@ allUsers.forEach((user) => {
   const params = {
     TableName: "Thoughts",
     Item: {
-      username: user.username,
-      createdAt: user.createdAt,
-      thought: user.thought,
-    },
+      "username": user.username,
+      "createdAt": user.createdAt,
+      "thought": user.thought,
+    }
   };
   dynamodb.put(params, (err, data) => {
     if (err) {

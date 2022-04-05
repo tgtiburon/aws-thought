@@ -1,19 +1,20 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const AWS = require("aws-sdk");
+const AWS = require('aws-sdk');
 
 const awsConfig = {
-  region: "usa-east-2",
+  region: 'us-east-2',
+  //endpoint: "http://localhost:8000"
 };
 AWS.config.update(awsConfig);
 // We use documentClient class to use
 // native js objects to interface with
 // dynamodb object
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const table = "Thoughts";
+const table = 'Thoughts';
 
-router.get("/users", (req, res) => {
+router.get('/users', (req, res) => {
   const params = {
     TableName: table,
   };
@@ -22,7 +23,7 @@ router.get("/users", (req, res) => {
     if (err) {
       res.status(500).json(err); // an error occurred
     } else {
-      res.json(data.Items);
+      res.json(data);
     }
   });
 });
