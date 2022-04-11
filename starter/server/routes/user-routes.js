@@ -84,7 +84,7 @@ router.post('/users', (req, res) => {
       res.status(500).json(err); //Error occured
     } else {
       console.log("Added item:", JSON.stringify(data, null, 2));
-      res.json({"Added": JSON.stringify(data,null, 2)});
+      res.json({Added: JSON.stringify(data,null, 2)});
     }
   });
 
