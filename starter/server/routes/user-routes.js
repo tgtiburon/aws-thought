@@ -44,7 +44,8 @@ router.get('/users/:username', (req, res) => {
     ExpressionAttributeNames: {
       '#un': 'username',
       '#ca': 'createdAt',
-      '#th': 'thought'
+      '#th': 'thought',
+      '#img': 'image'
     },
     // AttributeValue can also have alias
     // :user for req.params.username
@@ -52,7 +53,7 @@ router.get('/users/:username', (req, res) => {
       ':user': req.params.username,
     },
     // which columns to return
-    ProjectionExpression: '#th, #ca',
+    ProjectionExpression: '#un, #th, #ca, #img',
     // false so descending order
     ScanIndexForward: false, 
   }
@@ -75,6 +76,7 @@ router.post('/users', (req, res) => {
       username: req.body.username,
       createdAt: Date.now(),
       thought: req.body.thought,
+      image: req.body.image 
     },
   };
   // database call
@@ -84,7 +86,7 @@ router.post('/users', (req, res) => {
       res.status(500).json(err); //Error occured
     } else {
       console.log("Added item:", JSON.stringify(data, null, 2));
-      res.json({"Added": JSON.stringify(data,null, 2)});
+      res.json({Added: JSON.stringify(data,null, 2)});
     }
   });
 
