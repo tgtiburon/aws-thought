@@ -10,6 +10,7 @@ const params = (fileName) => {
         // gives unique filename
         Key: `${uuidv4()}.${fileType}`,
         Body: fileName.buffer,
+        ACL: 'public-read',
     };
     return imageParams;
 };
